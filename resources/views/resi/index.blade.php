@@ -11,12 +11,14 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+
+        <a href="{{ route('create') }}" class="btn btn-sm btn-primary">Tambah</a>
+
+        <div class="row mt-1">
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Data Resi yang Harus Dicetak</h3>
-
+                        <h4 class="card-title">Data Resi yang Harus Dicetak</h4>
                         {{-- <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -35,20 +37,38 @@
                         <table class="table table-head-fixed text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>ID</th>
-                                    <th>User</th>
-                                    <th>Date</th>
-                                    <th>Status</th>
-                                    <th>Reason</th>
+                                    <th>No Resi</th>
+                                    <th>Pembuatan</th>
+                                    <th>Desa</th>
+                                    <th>Tanggal Resi</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr></tr>
+                                @foreach ($resis as $item)
+                                    <tr>
+                                        <td>{{ $item->no_resi }}</td>
+                                        <td>{{ $item->pembuatan }}</td>
+                                        <td>{{ $item->desa }}</td>
+                                        <td>{{ $item->tanggal_resi }}</td>
+                                        <td>
+                                            <a href="{{ route('print', [$item->id]) }}"
+                                                class="btn btn-primary btn-sm">Print</a>
+
+                                            <a href="{{ route('edit', [$item->id]) }}"
+                                                class="btn btn-info btn-sm">Update</a>
+
+                                            <a href="{{ route('delete', [$item->id]) }}"
+                                                class="btn btn-danger btn-sm">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
                     <!-- /.card-body -->
                 </div>
+                {{ $resis->links('pagination::bootstrap-4') }}
                 <!-- /.card -->
             </div>
         </div>

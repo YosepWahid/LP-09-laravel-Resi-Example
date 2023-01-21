@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\SideController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,12 @@ Auth::routes([
     // 'register' => false
 ]);
 
+
 Route::get('/dashboard', [MainController::class, 'Dashboard'])->name('dashboard');
 Route::get('/resi', [MainController::class, 'Resi'])->name('Resi');
+Route::get('/create', [SideController::class, 'create'])->name('create');
+Route::get('/delete/{id}', [SideController::class, 'delete'])->name('delete');
+Route::get('/edit/{id}', [SideController::class, 'edit'])->name('edit');
+Route::get('/print/{id}', [SideController::class, 'print'])->name('print');
+Route::post('/store', [SideController::class, 'store'])->name('store');
+Route::post('/update/{id}', [SideController::class, 'update'])->name('update');

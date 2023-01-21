@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
 
     <!-- Styles -->
-    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+    {{-- <link href="{{ mix('css/app.css') }}" rel="stylesheet"> --}}
 </head>
 
 <body class="hold-transition login-page">

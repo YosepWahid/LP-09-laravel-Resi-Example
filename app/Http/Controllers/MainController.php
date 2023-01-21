@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Resi;
 use Illuminate\Http\Request;
 
 class MainController extends Controller
@@ -23,11 +24,13 @@ class MainController extends Controller
      */
     public function Dashboard()
     {
-        return view('dashboard.index');
+        $data = Resi::get()->count();
+        return view('dashboard.index', ['jumlah' => $data]);
     }
 
     public function Resi()
     {
-        return view('resi.index');
+        $data = Resi::orderby('tanggal_resi', 'DESC')->paginate(5);
+        return view('resi.index', ['resis' => $data]);
     }
 }

@@ -11,13 +11,14 @@
 
 @section('content')
     <div class="container-fluid">
-        <!-- Small boxes (Stat box) -->
+
         <div class="row">
+
             <div class="col-lg-3 col-3">
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
-                        <h3>150</h3>
+                        <h3>{{ $jumlah }}</h3>
 
                         <p>Total Data Resi</p>
                     </div>

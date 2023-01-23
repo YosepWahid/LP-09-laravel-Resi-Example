@@ -14,6 +14,8 @@
 
         <a href="{{ route('create') }}" class="btn btn-sm btn-primary">Tambah</a>
 
+
+
         <div class="row mt-1">
             <div class="col-12">
                 <div class="card">
@@ -60,12 +62,41 @@
 
                                             <a href="{{ route('delete', [$item->id]) }}"
                                                 class="btn btn-danger btn-sm">Delete</a>
+
+
+                                            <!-- Button Detail -->
+                                            <button type="button" class="btn btn-sm btn-primary" id="detailResi"
+                                                data-id="{{ $item->id }}">
+                                                Detail
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
                     </div>
+
+
+                    <!-- Modal Detail-->
+                    <div class="modal fade" id="ModalDetail" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="title">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body" id="content">
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Detail-->
                     <!-- /.card-body -->
                 </div>
                 {{ $resis->links('pagination::bootstrap-4') }}
@@ -74,3 +105,23 @@
         </div>
     </div>
 @endsection
+
+
+@push('script')
+    <script>
+        $(document).on('click', '#detailResi', function() {
+            let ResiID = $(this).data('id');
+            //fetch detail post with ajax
+            $.ajax({
+                url: "show/" + ResiID,
+                type: "GET",
+                cache: false,
+                success: function(response) {
+                    $('#content').html('pembuatan :' + response.data.pembuatan);
+                    $('#title').html(response.data.desa);
+                    $('#ModalDetail').modal('show');
+                }
+            });
+        })
+    </script>
+@endpush

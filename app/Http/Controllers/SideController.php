@@ -27,6 +27,16 @@ class SideController extends Controller
         return view('resi.edit', ['item' => $data]);
     }
 
+    public function show($id)
+    {
+        $data = Resi::find($id);
+        return response()->json([
+            'success' => true,
+            'message' => 'Detail Data Resi',
+            'data' => $data,
+        ]);
+    }
+
     public function update(Request $req, $id)
     {
         $req->validate([

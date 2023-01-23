@@ -32,5 +32,6 @@ Route::get('/create', [SideController::class, 'create'])->name('create');
 Route::get('/delete/{id}', [SideController::class, 'delete'])->name('delete');
 Route::get('/edit/{id}', [SideController::class, 'edit'])->name('edit');
 Route::get('/print/{id}', [SideController::class, 'print'])->name('print');
+Route::get('/show/{id}', [SideController::class, 'show'])->name('show');
 Route::post('/store', [SideController::class, 'store'])->name('store');
 Route::post('/update/{id}', [SideController::class, 'update'])->name('update');
